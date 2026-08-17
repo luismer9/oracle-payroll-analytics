@@ -1,0 +1,23 @@
+```gitignore
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Oracle exports
+*.dmp
+
+# Excel temporary files
+~$*.xlsx
+
+# Windows
+Thumbs.db
+Desktop.ini

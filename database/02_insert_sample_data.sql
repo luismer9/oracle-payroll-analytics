@@ -413,4 +413,134 @@ FROM employees e
 CROSS JOIN payroll_periods p
 WHERE p.period_code = '2026-01';
 
+/* ============================================================
+   7. PAYROLL - FEBRUARY TO JUNE 2026
+   ============================================================ */
+
+INSERT INTO payroll (
+    employee_id,
+    period_id,
+    gross_salary,
+    deductions,
+    bonuses,
+    net_salary
+)
+SELECT
+    e.employee_id,
+    p.period_id,
+
+    CASE
+        WHEN e.employee_code = 'EMP004'
+             AND p.period_code IN ('2026-04', '2026-05', '2026-06')
+            THEN 35000
+
+        WHEN e.employee_code = 'EMP001'
+            THEN 32000
+
+        WHEN e.employee_code = 'EMP002'
+            THEN 42000
+
+        WHEN e.employee_code = 'EMP003'
+            THEN 28000
+
+        WHEN e.employee_code = 'EMP004'
+            THEN 32000
+
+        WHEN e.employee_code = 'EMP005'
+            THEN 30000
+
+        WHEN e.employee_code = 'EMP006'
+            THEN 38000
+    END AS gross_salary,
+
+    CASE e.employee_code
+        WHEN 'EMP001' THEN 4200
+        WHEN 'EMP002' THEN 5800
+        WHEN 'EMP003' THEN 3500
+        WHEN 'EMP004' THEN 4300
+        WHEN 'EMP005' THEN 3900
+        WHEN 'EMP006' THEN 5200
+    END AS deductions,
+
+    CASE
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-02'
+            THEN 5200
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-03'
+            THEN 6100
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-04'
+            THEN 3800
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-05'
+            THEN 7200
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-06'
+            THEN 6500
+
+        ELSE 0
+    END AS bonuses,
+
+    CASE
+        WHEN e.employee_code = 'EMP001'
+            THEN 27800
+
+        WHEN e.employee_code = 'EMP002'
+            THEN 36200
+
+        WHEN e.employee_code = 'EMP003'
+            THEN 24500
+
+        WHEN e.employee_code = 'EMP004'
+             AND p.period_code IN ('2026-04', '2026-05', '2026-06')
+            THEN 30700
+
+        WHEN e.employee_code = 'EMP004'
+            THEN 27700
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-02'
+            THEN 31300
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-03'
+            THEN 32200
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-04'
+            THEN 29900
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-05'
+            THEN 33300
+
+        WHEN e.employee_code = 'EMP005'
+             AND p.period_code = '2026-06'
+            THEN 32600
+
+        WHEN e.employee_code = 'EMP006'
+            THEN 32800
+    END AS net_salary
+
+FROM employees e
+CROSS JOIN payroll_periods p
+
+WHERE p.period_code IN (
+    '2026-02',
+    '2026-03',
+    '2026-04',
+    '2026-05',
+    '2026-06'
+)
+
+AND (
+    e.employee_code <> 'EMP006'
+    OR p.period_code IN ('2026-02', '2026-03')
+);
+
 COMMIT;

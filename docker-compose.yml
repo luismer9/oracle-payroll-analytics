@@ -1,0 +1,18 @@
+services:
+  oracle:
+    image: container-registry.oracle.com/database/free:latest
+    container_name: oracle-payroll-db
+
+    ports:
+      - "1521:1521"
+
+    environment:
+      ORACLE_PWD: ${ORACLE_PWD}
+
+    volumes:
+      - oracle-payroll-data:/opt/oracle/oradata
+
+    restart: unless-stopped
+
+volumes:
+  oracle-payroll-data:

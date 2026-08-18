@@ -30,6 +30,7 @@ DEPARTMENTS
               ├── SALARY_HISTORY
               │
               └── PAYROLL ─── PAYROLL_PERIODS
+```
 
 ## Analytical Queries
 

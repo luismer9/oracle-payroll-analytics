@@ -150,9 +150,16 @@ screenshots/    Query results and project demonstrations
 Execute the scripts in this order:
 
 
-1. database/01_create_tables.sql
-2. database/02_insert_sample_data.sql
-3. database/03_create_indexes.sql
+1. Copy .env.example to .env
+2. Set a local Oracle password
+3. Run docker compose up -d
+4. Connect to Oracle using localhost:1521 and service FREEPDB1
+5. Create/use the PAYROLL_ANALYTICS schema
+6. Run database/01_create_tables.sql
+7. Run database/02_insert_sample_data.sql
+8. Run database/03_create_indexes.sql
+9. Run views/01_employee_payroll_summary.sql
+10. Explore the queries/ directory
 
 ## Example Results
 

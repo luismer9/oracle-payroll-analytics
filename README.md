@@ -2,19 +2,105 @@
 
 Oracle SQL portfolio project focused on employee payroll analysis, reporting, historical salary tracking, and data quality analysis.
 
-## Project Goals
+## Business Problem
 
-This project demonstrates practical SQL skills for solving real-world business reporting problems using Oracle Database.
+Payroll data is often distributed across employee, department, position,
+salary-history and payment tables.
 
-The project will include:
+This project demonstrates how Oracle SQL can be used to transform that
+relational data into useful business information, including:
 
-- Employee and payroll reporting
-- Department payroll cost analysis
-- Salary history tracking
-- Active and inactive employee analysis
+- Monthly payroll costs
+- Department payroll analysis
+- Employee salary history
+- Employee status and termination analysis
 - Payroll anomaly detection
-- Historical comparisons
-- Advanced Oracle SQL queries
+- Employee payroll trends
+- Query performance analysis
+
+## Database Architecture
+
+The project uses the following main entities:
+
+DEPARTMENTS
+     │
+     └── EMPLOYEES ─── POSITIONS
+              │
+              ├── SALARY_HISTORY
+              │
+              └── PAYROLL ─── PAYROLL_PERIODS
+
+## Analytical Queries
+
+The project includes several business-oriented SQL analyses.
+
+### Monthly Payroll Summary
+
+Provides monthly payroll totals including:
+
+- Employees paid
+- Gross salary
+- Bonuses
+- Deductions
+- Net salary
+- Month-over-month variation
+
+### Employee Salary History
+
+Analyzes:
+
+- Salary increases
+- Increase percentages
+- Latest salary change
+- Historical salary evolution
+
+### Employee Status Analysis
+
+Identifies:
+
+- Active and terminated employees
+- Employment duration
+- Last payroll payment
+- Payments after termination
+
+### Payroll Anomaly Detection
+
+Detects potential payroll issues such as:
+
+- Incorrect net salary calculations
+- Payments after termination
+- Duplicate payroll records
+- Invalid payroll values
+- High deduction ratios
+- Large salary increases
+
+### Department Cost Analysis
+
+Calculates:
+
+- Payroll cost by department
+- Department share of total payroll
+- Department rankings
+- Monthly payroll cost evolution
+
+### Employee Payroll Trends
+
+Includes:
+
+- Cumulative payroll
+- Average payroll
+- Month-over-month changes
+- Bonus analysis
+- Employee payroll rankings
+
+### Performance Analysis
+
+Uses Oracle tools such as:
+
+- `EXPLAIN PLAN`
+- `DBMS_XPLAN`
+- Index analysis
+- Optimizer statistics
 
 ## Technologies
 
@@ -24,28 +110,79 @@ The project will include:
 - Git
 - GitHub
 
-## SQL Concepts
+## Oracle SQL Skills Demonstrated
 
-This project will demonstrate the use of:
+This project demonstrates practical use of:
 
 - JOIN
-- Common Table Expressions (CTE)
-- CASE
+- LEFT JOIN
 - GROUP BY
 - HAVING
-- Subqueries
+- CASE
+- Common Table Expressions (CTE)
 - ROW_NUMBER()
+- RANK()
+- DENSE_RANK()
 - LAG()
 - SUM() OVER()
+- AVG() OVER()
 - PARTITION BY
-- Views
+- Window functions
+- Constraints
+- Foreign keys
 - Indexes
+- EXPLAIN PLAN
+- DBMS_STATS
 
 ## Project Structure
 
-```text
 database/       Database schema and sample data
 queries/        Business reports and analytical queries
 views/          Oracle database views
 docs/           Project documentation
 screenshots/    Query results and project demonstrations
+
+## How to Run
+
+Execute the scripts in this order:
+
+
+1. database/01_create_tables.sql
+2. database/02_insert_sample_data.sql
+3. database/03_create_indexes.sql
+
+## Example Results
+
+### Monthly Payroll Summary
+
+![Monthly Payroll Summary](screenshots/01_payroll_summary.png)
+
+## Example Results
+
+### Monthly Payroll Summary
+
+![Monthly Payroll Summary](screenshots/02_salary_history.png)
+
+## Example Results
+
+### Monthly Payroll Summary
+
+![Monthly Payroll Summary](screenshots/03_payroll_audit.png)
+
+## Example Results
+
+### Monthly Payroll Summary
+
+![Monthly Payroll Summary](screenshots/04_department_cost_analysis.png)
+
+## Example Results
+
+### Monthly Payroll Summary
+
+![Monthly Payroll Summary](screenshots/05_employee_payroll_trends.png)
+
+## Example Results
+
+### Monthly Payroll Summary
+
+![Monthly Payroll Summary](screenshots/06_execution_plan.png)

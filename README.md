@@ -157,31 +157,21 @@ Execute the scripts in this order:
 
 ![Monthly Payroll Summary](screenshots/01_payroll_summary.png)
 
-## Example Results
-
 ### Salary History
 
 ![Salary History](screenshots/02_salary_history.png)
-
-## Example Results
 
 ### Payroll Audit
 
 ![Payroll Summary](screenshots/03_payroll_audit.png)
 
-## Example Results
-
 ### Department Cost Analysis
 
 ![Department Cost Analysis](screenshots/04_department_cost_analysis.png)
 
-## Example Results
-
 ### Employee Payroll
 
 ![Employee Payroll](screenshots/05_employee_payroll_trends.png)
-
-## Example Results
 
 ### Execution Plan
 

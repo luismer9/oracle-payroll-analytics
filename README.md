@@ -22,6 +22,7 @@ relational data into useful business information, including:
 
 The project uses the following main entities:
 
+```text
 DEPARTMENTS
      │
      └── EMPLOYEES ─── POSITIONS
@@ -105,6 +106,7 @@ Uses Oracle tools such as:
 ## Technologies
 
 - Oracle Database
+- Docker
 - SQL
 - Oracle SQL Developer
 - Git
@@ -163,7 +165,7 @@ Execute the scripts in this order:
 
 ### Payroll Audit
 
-![Payroll Summary](screenshots/03_payroll_audit.png)
+![Payroll Audit](screenshots/03_payroll_audit.png)
 
 ### Department Cost Analysis
 

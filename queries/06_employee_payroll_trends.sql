@@ -193,3 +193,85 @@ SELECT
 FROM employee_totals
 
 ORDER BY payroll_rank;
+
+/* ============================================================
+   6. EMPLOYEE BONUS ANALYSIS
+   ============================================================ */
+
+SELECT
+    e.employee_code,
+    e.first_name,
+    e.last_name,
+
+    COUNT(
+        CASE
+            WHEN p.bonuses > 0 THEN 1
+        END
+    ) AS periods_with_bonus,
+
+    SUM(p.bonuses) AS total_bonuses,
+
+    ROUND(
+        AVG(
+            CASE
+                WHEN p.bonuses > 0
+                THEN p.bonuses
+            END
+        ),
+        2
+    ) AS average_bonus,
+
+    MAX(p.bonuses) AS highest_bonus
+
+FROM payroll p
+
+JOIN employees e
+    ON e.employee_id = p.employee_id
+
+GROUP BY
+    e.employee_code,
+    e.first_name,
+    e.last_name
+
+ORDER BY
+    total_bonuses DESC;
+
+/* ============================================================
+   7. HIGHEST PAID EMPLOYEE BY MONTH
+   ============================================================ */
+
+WITH monthly_employee_payroll AS (
+    SELECT
+        pp.period_code,
+        pp.payment_date,
+        e.employee_code,
+        e.first_name,
+        e.last_name,
+        p.net_salary,
+
+        DENSE_RANK() OVER (
+            PARTITION BY pp.period_id
+            ORDER BY p.net_salary DESC
+        ) AS salary_rank
+
+    FROM payroll p
+
+    JOIN employees e
+        ON e.employee_id = p.employee_id
+
+    JOIN payroll_periods pp
+        ON pp.period_id = p.period_id
+)
+
+SELECT
+    period_code,
+    employee_code,
+    first_name,
+    last_name,
+    net_salary
+
+FROM monthly_employee_payroll
+
+WHERE salary_rank = 1
+
+ORDER BY payment_date;
